@@ -67,7 +67,7 @@ def display_pie(pie_values, pie_labels, colors=None,title=''):
     plt.show()
 
 if __name__ == "__main__":
-    mean, covariance, constraint_matrix, constraint_vector, tickers = form_optimisation_matricies(["MSFT", "NVDA", "TSLA", "CVX"], "2020-01-01", '2023-10-01', 0.1, 1)
+    mean, covariance, constraint_matrix, constraint_vector, tickers = form_optimisation_matricies(["MSFT", "NVDA", "TSLA", "CVX"], "2020-01-01", '2023-10-01', 0.1, 2)
 
     df_stocks = branch_and_bound(mean, covariance, tickers, 'RAR')
         

@@ -26,12 +26,13 @@ def form_optimisation_matricies(tickers: list[str], start_time: str, end_time: s
     covariance_matrix = price_changes.cov().to_numpy()
     constraint_matrix = np.ones((1, len(tickers)))
     constraint_vector = np.array([[1]])
-    return mean_vector + 0.0001 * esg_factor * esg_values, risk_factor * covariance_matrix, constraint_matrix, constraint_vector
+    return mean_vector + 0.0001 * esg_factor * esg_values, risk_factor * covariance_matrix, constraint_matrix, constraint_vector, tickers
 
 
 if __name__ == "__main__":
-    mean, covariance, constraint_matrix, constraint_vector = form_optimisation_matricies(["MSFT", "NVDA", "TSLA", "CVX"], "2020-01-01", '2023-10-01', 0.1, 4.0)
+    mean, covariance, constraint_matrix, constraint_vector, tickers = form_optimisation_matricies(["MSFT", "NVDA", "TSLA", "CVX"], "2020-01-01", '2023-10-01', 0.1, 4.0)
     print(mean)
     print(covariance)
     print(constraint_matrix.shape)
     print(constraint_vector.shape)
+    print(tickers)

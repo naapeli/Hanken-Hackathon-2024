@@ -43,9 +43,11 @@ def transform(mean, covariance, prices, budget):
     covariance__ = (C.T @ covariance_) @ C
     P__ = C.T * P_
 
-    return mu__, covariance__, P__
+    return mu__, covariance__, P__, C
     
 
 if __name__ == "__main__":
     mean, covariance, constraint_matrix, constraint_vector, tickers, prices = form_optimisation_matricies(["AMZN", "PM", "CVX", "PFE", "TSLA", "JPM", "V", "GOOGL", "NFLX", "XOM"], "2022-01-01", '2023-10-01', 0.5, 0.5, 0.5, 0.5, 4.0)
-    mean_transformed, covariance_transformed, price_transformed = transform(mean, covariance, prices, 2000)
+    mean_transformed, covariance_transformed, price_transformed, C = transform(mean, covariance, prices, 2000)
+    print(mean_transformed)
+    print(covariance_transformed)

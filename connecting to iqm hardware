@@ -1,0 +1,24 @@
+from qiskit_algorithms.utils import algorithm_globals
+from qiskit import transpile
+from qiskit_ibm_runtime import QiskitRuntimeService
+from qiskit import transpile
+from iqm.qiskit_iqm import IQMProvider
+
+iqm_server_url = "https://cocos.resonance.meetiqm.com/garnet:mock" 
+provider = IQMProvider(iqm_server_url, token='YOUR TOKEN')
+
+algorithm_globals.random_seed = 1234
+
+cobyla = COBYLA()
+cobyla.set_options(maxiter=500)
+ry = TwoLocal(num_assets, "ry", "cz", reps=3, entanglement="full")
+
+backend = provider.get_backend() 
+session = Session(backend=backend)
+sampler = Sampler(session)
+
+svqe_mes = SamplingVQE(sampler=sampler, ansatz=ry, optimizer=cobyla)
+svqe = MinimumEigenOptimizer(svqe_mes)
+result = svqe.solve(qp)
+
+print_result(result)
